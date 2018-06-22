@@ -21029,7 +21029,7 @@ var App = function (_React$Component) {
         _react2.default.createElement(
           'p',
           null,
-          'Hello world'
+          'Hello world from React'
         )
       );
     }

@@ -7,19 +7,22 @@
     "type": "git"
   },
   "scripts": {
-    "build": "browserify ./src/App.jsx -o ./build/app.js -t babelify && browserify ./src/server.js -o ./build/server.js -t babelify",
-    "watch": "concurrently \"watchify ./src/App.jsx -o ./build/app.js -t babelify -v\" \"watchify ./src/server.js -o ./build/server.js -t babelify -v\"",
-    "start": "node ./build/server.js"
+    "build": "browserify ./src/client/App.jsx -o ./build/client/app.js -t babelify && babel ./src/server --out-dir ./build/server",
+    "watch": "concurrently \"watchify ./src/client/App.jsx -o ./build/client/app.js -t babelify -v\" \"babel ./src/server --out-dir ./build/server --watch\"",
+    "start": "nodemon ./build/server/server.js"
   },
   "author": "Krasimir Tsonev <info@krasimirtsonev.com>",
   "license": "MIT",
   "dependencies": {
+    "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
     "babel-preset-es2015": "6.24.1",
     "babel-preset-react": "6.24.1",
     "babelify": "8.0.0",
     "browserify": "14.5.0",
     "concurrently": "3.6.0",
+    "express": "4.16.3",
+    "nodemon": "1.17.5",
     "react": "16.0.0",
     "react-dom": "16.0.0",
     "watchify": "3.9.0"
