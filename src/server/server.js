@@ -3,6 +3,7 @@ import express from 'express';
 const app = express();
 
 app.use(express.static(__dirname + '/../client/'));
+app.use(express.static(__dirname + '/../../data'));
 
 app.get('*', (req, res) => {
   res.set('Content-Type', 'text/html');

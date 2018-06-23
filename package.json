@@ -25,6 +25,8 @@
     "nodemon": "1.17.5",
     "react": "16.0.0",
     "react-dom": "16.0.0",
+    "react-redux": "5.0.7",
+    "redux": "4.0.0",
     "watchify": "3.9.0"
   }
 }
