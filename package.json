@@ -7,8 +7,8 @@
     "type": "git"
   },
   "scripts": {
-    "build": "browserify ./src/client/App.jsx -o ./build/client/app.js -t babelify && babel ./src/server --out-dir ./build/server",
-    "watch": "concurrently \"watchify ./src/client/App.jsx -o ./build/client/app.js -t babelify -v\" \"babel ./src/server --out-dir ./build/server --watch\"",
+    "build": "browserify ./src/client/client.js -o ./build/client/bundle.js -t babelify && babel ./src/ --out-dir ./build/",
+    "watch": "concurrently \"watchify ./src/client/client.js -o ./build/client/bundle.js -t babelify -v\" \"babel ./src/ --out-dir ./build/ --watch\"",
     "start": "nodemon ./build/server/server.js"
   },
   "author": "Krasimir Tsonev <info@krasimirtsonev.com>",
@@ -22,6 +22,7 @@
     "browserify": "14.5.0",
     "concurrently": "3.6.0",
     "express": "4.16.3",
+    "isomorphic-fetch": "2.2.1",
     "nodemon": "1.17.5",
     "react": "16.0.0",
     "react-dom": "16.0.0",

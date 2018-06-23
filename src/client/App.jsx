@@ -1,32 +1,28 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Provider, connect } from 'react-redux'
-import { createStore } from 'redux'
+import { connect } from 'react-redux';
+import { USERS_FETCHED } from './constants';
+import { getUsers } from './selectors';
 
 const ENDPOINT = 'http://localhost:3000/users_fake_data.json';
 
 // Action creator
-const USERS_FETCHED = 'USERS_FETCHED';
 const usersFetched = response => ({ type: USERS_FETCHED, response });
-
-// Store
-const store = createStore(function (oldState = { users: [] }, action) {
-  if (action.type === USERS_FETCHED) {
-    return { users: action.response.data };
-  }
-  return oldState;
-});
 
 // React
 class App extends React.Component {
-  componentDidMount() {
-    this.props.fetchUsers();
+  componentWillMount() {
+    if (this.props.users === null) {
+      this.props.fetchUsers();
+    }
   }
   render() {
+    const { users } = this.props;
+
     return (
       <div>
         {
-          this.props.users.length > 0 && this.props.users.map(
+          users && users.length > 0 && users.map(
             ({ id, first_name: firstName, last_name: lastName }) => <p key={ id }>{ `${ firstName} ${ lastName }` }</p>
           )
         }
@@ -38,12 +34,11 @@ class App extends React.Component {
 // Wiring with Redux
 const ConnectedApp = connect(
   state => ({
-    users: state.users
+    users: getUsers(state)
   }),
   dispatch => ({
     fetchUsers: async () => dispatch(usersFetched(await (await fetch(ENDPOINT)).json()))
   })
 )(App);
 
-// Rendering
-ReactDOM.render(<Provider store={ store }><ConnectedApp /></Provider>, document.querySelector('#content'));
+export default ConnectedApp;
