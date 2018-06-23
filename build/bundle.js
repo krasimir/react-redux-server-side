@@ -23122,15 +23122,13 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = require('react-dom');
-
-var _reactDom2 = _interopRequireDefault(_reactDom);
-
 var _reactRedux = require('react-redux');
 
 var _constants = require('./constants');
 
 var _selectors = require('./selectors');
+
+var _actions = require('./actions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23141,13 +23139,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var ENDPOINT = 'http://localhost:3000/users_fake_data.json';
-
-// Action creator
-var usersFetched = function usersFetched(response) {
-  return { type: _constants.USERS_FETCHED, response: response };
-};
-
-// React
 
 var App = function (_React$Component) {
   _inherits(App, _React$Component);
@@ -23161,8 +23152,13 @@ var App = function (_React$Component) {
   _createClass(App, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      if (this.props.users === null) {
-        this.props.fetchUsers();
+      var _props = this.props,
+          users = _props.users,
+          fetchUsers = _props.fetchUsers;
+
+
+      if (users === null) {
+        fetchUsers();
       }
     }
   }, {
@@ -23191,24 +23187,33 @@ var App = function (_React$Component) {
   return App;
 }(_react2.default.Component);
 
-// Wiring with Redux
-
-
 var ConnectedApp = (0, _reactRedux.connect)(function (state) {
-  return {
-    users: (0, _selectors.getUsers)(state)
-  };
+  return { users: (0, _selectors.getUsers)(state) };
 }, function (dispatch) {
   return {
     fetchUsers: async function fetchUsers() {
-      return dispatch(usersFetched((await (await fetch(ENDPOINT)).json())));
+      return dispatch((0, _actions.usersFetched)((await (await fetch(ENDPOINT)).json())));
     }
   };
 })(App);
 
 exports.default = ConnectedApp;
 
-},{"./constants":64,"./selectors":66,"react":58,"react-dom":40,"react-redux":50}],63:[function(require,module,exports){
+},{"./actions":63,"./constants":65,"./selectors":67,"react":58,"react-redux":50}],63:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.usersFetched = undefined;
+
+var _constants = require('./constants');
+
+var usersFetched = exports.usersFetched = function usersFetched(response) {
+  return { type: _constants.USERS_FETCHED, response: response };
+};
+
+},{"./constants":65}],64:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -23231,14 +23236,13 @@ var _store2 = _interopRequireDefault(_store);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-// Rendering
 _reactDom2.default.render(_react2.default.createElement(
   _reactRedux.Provider,
   { store: (0, _store2.default)() },
   _react2.default.createElement(_App2.default, null)
 ), document.querySelector('#content'));
 
-},{"./App.jsx":62,"./store":67,"react":58,"react-dom":40,"react-redux":50}],64:[function(require,module,exports){
+},{"./App.jsx":62,"./store":68,"react":58,"react-dom":40,"react-redux":50}],65:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23246,7 +23250,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 var USERS_FETCHED = exports.USERS_FETCHED = 'USERS_FETCHED';
 
-},{}],65:[function(require,module,exports){
+},{}],66:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23274,7 +23278,7 @@ var reducer = function reducer() {
 
 exports.default = reducer;
 
-},{"./constants":64}],66:[function(require,module,exports){
+},{"./constants":65}],67:[function(require,module,exports){
 "use strict";
 
 Object.defineProperty(exports, "__esModule", {
@@ -23285,7 +23289,7 @@ var getUsers = exports.getUsers = function getUsers(_ref) {
   return users;
 };
 
-},{}],67:[function(require,module,exports){
+},{}],68:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23306,4 +23310,4 @@ exports.default = function () {
   return (0, _redux.createStore)(_reducer2.default);
 };
 
-},{"./constants":64,"./reducer":65,"redux":59}]},{},[63]);
+},{"./constants":65,"./reducer":66,"redux":59}]},{},[64]);

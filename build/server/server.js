@@ -30,11 +30,10 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var app = (0, _express2.default)();
 
-app.use(_express2.default.static(__dirname + '/../client/'));
+app.use(_express2.default.static(__dirname + '/../'));
 app.use(_express2.default.static(__dirname + '/../../data'));
 
 app.get('*', function (req, res) {
-  console.log('request comes in');
   var store = (0, _store2.default)();
 
   var unsubscribe = store.subscribe(function () {

@@ -10,11 +10,10 @@ import createStore from '../client/store';
 
 const app = express();
 
-app.use(express.static(__dirname + '/../client/'));
+app.use(express.static(__dirname + '/../'));
 app.use(express.static(__dirname + '/../../data'));
 
 app.get('*', (req, res) => {
-  console.log('request comes in');
   const store = createStore();
 
   const unsubscribe = store.subscribe(() => {
