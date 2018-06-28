@@ -1,9 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { USERS_FETCHED } from './constants';
-import { getUsers } from './selectors';
-import { usersFetched } from './actions';
+import { getUsers } from './redux/selectors';
+import { usersFetched } from './redux/actions';
 
 const ENDPOINT = 'http://localhost:3000/users_fake_data.json';
 

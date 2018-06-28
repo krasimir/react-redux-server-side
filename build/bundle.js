@@ -23124,11 +23124,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = require('react-redux');
 
-var _constants = require('./constants');
+var _selectors = require('./redux/selectors');
 
-var _selectors = require('./selectors');
-
-var _actions = require('./actions');
+var _actions = require('./redux/actions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -23199,21 +23197,7 @@ var ConnectedApp = (0, _reactRedux.connect)(function (state) {
 
 exports.default = ConnectedApp;
 
-},{"./actions":63,"./constants":65,"./selectors":67,"react":58,"react-redux":50}],63:[function(require,module,exports){
-'use strict';
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.usersFetched = undefined;
-
-var _constants = require('./constants');
-
-var usersFetched = exports.usersFetched = function usersFetched(response) {
-  return { type: _constants.USERS_FETCHED, response: response };
-};
-
-},{"./constants":65}],64:[function(require,module,exports){
+},{"./redux/actions":64,"./redux/selectors":67,"react":58,"react-redux":50}],63:[function(require,module,exports){
 'use strict';
 
 var _react = require('react');
@@ -23230,7 +23214,7 @@ var _App = require('./App.jsx');
 
 var _App2 = _interopRequireDefault(_App);
 
-var _store = require('./store');
+var _store = require('./redux/store');
 
 var _store2 = _interopRequireDefault(_store);
 
@@ -23242,7 +23226,21 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(_App2.default, null)
 ), document.querySelector('#content'));
 
-},{"./App.jsx":62,"./store":68,"react":58,"react-dom":40,"react-redux":50}],65:[function(require,module,exports){
+},{"./App.jsx":62,"./redux/store":68,"react":58,"react-dom":40,"react-redux":50}],64:[function(require,module,exports){
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.usersFetched = undefined;
+
+var _constants = require('./constants');
+
+var usersFetched = exports.usersFetched = function usersFetched(response) {
+  return { type: _constants.USERS_FETCHED, response: response };
+};
+
+},{"./constants":65}],65:[function(require,module,exports){
 'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -23310,4 +23308,4 @@ exports.default = function () {
   return (0, _redux.createStore)(_reducer2.default);
 };
 
-},{"./constants":65,"./reducer":66,"redux":59}]},{},[64]);
+},{"./constants":65,"./reducer":66,"redux":59}]},{},[63]);

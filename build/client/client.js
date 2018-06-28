@@ -14,7 +14,7 @@ var _App = require('./App.jsx');
 
 var _App2 = _interopRequireDefault(_App);
 
-var _store = require('./store');
+var _store = require('./redux/store');
 
 var _store2 = _interopRequireDefault(_store);
 

@@ -3,10 +3,10 @@ import ReactDOMServer from 'react-dom/server';
 import { Provider } from 'react-redux';
 import express from 'express';
 import 'isomorphic-fetch';
-import { getUsers } from '../client/selectors';
 
+import { getUsers } from '../client/redux/selectors';
+import createStore from '../client/redux/store';
 import App from '../client/App.js';
-import createStore from '../client/store';
 
 const app = express();
 

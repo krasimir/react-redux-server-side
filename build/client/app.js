@@ -12,11 +12,9 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRedux = require('react-redux');
 
-var _constants = require('./constants');
+var _selectors = require('./redux/selectors');
 
-var _selectors = require('./selectors');
-
-var _actions = require('./actions');
+var _actions = require('./redux/actions');
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
