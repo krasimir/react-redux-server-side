@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { getUsers } from './redux/selectors';
 import { usersFetched } from './redux/actions';
 
-const ENDPOINT = 'http://localhost:3000/users_fake_data.json';
+const ENDPOINT = 'http://localhost:3000/users.json';
 
 class App extends React.Component {
   componentWillMount() {
